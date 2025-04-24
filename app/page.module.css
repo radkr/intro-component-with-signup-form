@@ -1,0 +1,152 @@
+.heading {
+  font-family: var(--font-poppins-sans-serif);
+}
+
+.contentArea {
+  margin: 90px 24px 70px 24px;
+}
+
+.intro {
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  margin: 4.125em 0;
+}
+
+.intro h1 {
+  font-size: 1.75em;
+  line-height: 1.3em;
+  margin-bottom: 0.875em;
+}
+
+.pricing {
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  background-color: var(--blue);
+  padding: 1.25em 3em;
+  margin: 1.5em 0;
+  border-radius: 0.675em;
+  box-shadow: 0 0.5em 0 0 rgba(0, 0, 0, 0.175);
+}
+
+.pricing strong {
+  font-weight: 600;
+}
+
+.signUpForm {
+  font-size: 1rem;
+  background-color: white;
+  border-radius: 1em;
+  padding: 1.25em;
+  box-shadow: 0 0.5em 0 0 rgba(0, 0, 0, 0.175);
+}
+
+.signUpForm label {
+  display: none;
+}
+
+.signUpForm p {
+  margin: 0 0 1rem 0;
+  position: relative;
+}
+
+.signUpForm input {
+  appearance: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--dark-blue);
+  padding: 1rem;
+  width: 100%;
+  border: none;
+  border: 1px solid var(--grayis-blue);
+  border-radius: 0.5em;
+}
+
+.signUpForm input:active,
+.signUpForm input:hover {
+  border-color: var(--blue);
+}
+
+.signUpForm input:focus {
+  border: none;
+  border: 1px solid var(--blue);
+  outline: none;
+  caret-color: var(--blue);
+}
+
+.signUpForm .active input {
+  border: 2px solid var(--red);
+  padding-right: 4.6875rem;
+  color: var(--red);
+}
+
+.signUpForm .active input:autofill {
+  color: var(--red);
+}
+
+.signUpForm .active input::placeholder {
+  visibility: hidden;
+}
+
+.signUpForm .errorIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1.5625rem;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  display: none;
+}
+
+.signUpForm .active .errorIcon {
+  display: block;
+}
+
+.signUpForm .error {
+  font-size: 0.675rem;
+  font-style: italic;
+  color: var(--red);
+  display: none;
+  width: 100%;
+  text-align: right;
+}
+
+.signUpForm .active .error {
+  display: inline-block;
+}
+
+.signUpForm input.active:active,
+.signUpForm input.active:hover {
+  border-color: var(--red);
+}
+
+.signUpForm button {
+  appearance: none;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--green);
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+  width: 100%;
+  border: none;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25em 0 0 var(--dark-green);
+  cursor: pointer;
+}
+
+.signUpForm .terms {
+  font-size: 0.675rem;
+  text-align: center;
+  color: var(--grayis-blue);
+  margin: 0 2em;
+}
+
+.signUpForm .terms a {
+  font-size: 0.675rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--red);
+}

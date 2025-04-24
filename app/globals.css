@@ -1,4 +1,24 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --red: hsl(0, 100%, 74%);
+  --green: hsl(154, 59%, 51%);
+  /*--dark-green: hsl(103, 138%, 111%);*/
+  --dark-green: rgb(50, 185, 127);
+  --blue: hsl(248, 32%, 49%);
+  --dark-blue: hsl(249, 10%, 26%);
+  --grayis-blue: hsl(246, 25%, 77%);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-poppins-sans-serif);
+  font-weight: 400;
+  background-image: url(/static/bg-intro-mobile.png);
+  background-size: cover;
+  background-position: top;
+  background-color: var(--red);
 }
