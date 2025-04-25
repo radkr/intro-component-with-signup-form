@@ -61,6 +61,10 @@ Show the styled page on both desktop and mobile devices.
 
 Refactor: Rewrite the style to use grid instead of flexbox to prevent glitches around the breakpoint.
 
+## Iteration 4
+
+Refactor: Factor the reused Input component and the functional SignUpForm component out into React Functional Components to enhance the maintainablilty and the testability of the page.
+
 ## What I learned
 
 ### Next.js fonts

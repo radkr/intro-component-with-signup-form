@@ -1,0 +1,88 @@
+.field {
+  margin: 0 0 1rem 0;
+  position: relative;
+}
+
+.fieldLabel {
+  display: none;
+}
+
+.fieldInput {
+  appearance: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--dark-blue);
+  padding: 1rem;
+  width: 100%;
+  border: none;
+  border: 1px solid var(--grayis-blue);
+  border-radius: 0.5em;
+}
+
+.fieldInput:active,
+.fieldInput:hover {
+  border-color: var(--blue);
+}
+
+.fieldInput:focus {
+  border: none;
+  border: 1px solid var(--blue);
+  outline: none;
+  caret-color: var(--blue);
+}
+
+.active .fieldInput {
+  border: 2px solid var(--red);
+  padding-right: 4.6875rem;
+  color: var(--red);
+}
+
+.active .fieldInput:active,
+.active .fieldInput:hover {
+  border-color: var(--red);
+}
+
+.active .fieldInput:autofill {
+  color: var(--red);
+}
+
+.active .fieldInput::placeholder {
+  visibility: hidden;
+}
+
+.errorIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1.5625rem;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  display: none;
+}
+
+.active .errorIcon {
+  display: block;
+}
+
+.error {
+  font-size: 0.675rem;
+  font-style: italic;
+  color: var(--red);
+  display: none;
+  width: 100%;
+  text-align: right;
+}
+
+.active .error {
+  display: inline-block;
+}
+
+@media (min-width: calc(1.5rem + 35rem + 35rem + 1.5rem)) {
+  .field {
+    margin: 0 0 1.3125rem 0;
+  }
+
+  .field input {
+    padding: 1rem 1.875rem;
+  }
+}
