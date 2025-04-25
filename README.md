@@ -51,6 +51,10 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
 
 Show the styled page on mobile devices.
 
+### Iteration 2
+
+Show the styled page on both desktop and mobile devices.
+
 ## What I learned
 
 ### Next.js fonts
@@ -77,6 +81,16 @@ Place the background image into the static folder instead of the public folder, 
   background-position: center;
 }
 ```
+
+### Iteration 1 - Lesson learned
+
+Building a webpage according to a reference screenshot instead of a figma file is much harder and will probably not pixel accurate even not to the degree when working with figma files.
+
+I found the [PerfectPixel Chrome extension](https://chromewebstore.google.com/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi) that overlays the reference screenshots over the rendered webpage under construction that helps visually see the differences.
+
+### Iteration 2 - Lesson learned
+
+When the element sizes change with the layout, using flexbox can be tricky. Iteration 3 will maybe to refactor the current solution to grid layout to prevent the undesired glitches around the breakpoint.
 
 ## Useful resources
 

@@ -1,22 +1,35 @@
-.heading {
-  font-family: var(--font-poppins-sans-serif);
-}
-
 .contentArea {
-  margin: 90px 24px 70px 24px;
+  font-size: 1rem;
+  padding: 3.75rem 1.5rem;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2rem;
 }
 
 .intro {
   font-size: 1rem;
   color: white;
   text-align: center;
-  margin: 4.125em 0;
+  margin: 2rem 0;
+  max-width: 35rem;
+  flex-grow: 100;
 }
 
 .intro h1 {
-  font-size: 1.75em;
-  line-height: 1.3em;
-  margin-bottom: 0.875em;
+  font-size: 1.75em; /*28px*/
+  line-height: 1.3em; /*36.4px*/
+  margin-bottom: 0.875em; /*24.5px*/
+}
+
+.signUp {
+  font-size: 1rem;
+  max-width: 35rem;
+  flex-grow: 100;
 }
 
 .pricing {
@@ -25,8 +38,9 @@
   text-align: center;
   background-color: var(--blue);
   padding: 1.25em 3em;
-  margin: 1.5em 0;
-  border-radius: 0.675em;
+  margin: 0 auto 1.5em auto;
+  max-width: 33.75rem;
+  border-radius: 0.5em;
   box-shadow: 0 0.5em 0 0 rgba(0, 0, 0, 0.175);
 }
 
@@ -37,8 +51,10 @@
 .signUpForm {
   font-size: 1rem;
   background-color: white;
-  border-radius: 1em;
-  padding: 1.25em;
+  border-radius: 0.5em;
+  padding: 1.5em;
+  margin: auto;
+  max-width: 33.75rem;
   box-shadow: 0 0.5em 0 0 rgba(0, 0, 0, 0.175);
 }
 
@@ -46,7 +62,7 @@
   display: none;
 }
 
-.signUpForm p {
+.signUpForm .field {
   margin: 0 0 1rem 0;
   position: relative;
 }
@@ -62,6 +78,37 @@
   border: none;
   border: 1px solid var(--grayis-blue);
   border-radius: 0.5em;
+}
+
+@media (min-width: calc(1.5rem + 35rem + 35rem + 1.5rem)) {
+  .intro {
+    text-align: left;
+  }
+
+  .intro h1 {
+    font-size: 3.15em; /*50.4px*/
+    line-height: 1.1em; /*55.44px*/
+    margin-top: 0.1984em; /*10px*/
+    margin-bottom: 0.6em; /*30.24px*/
+  }
+
+  .pricing {
+    padding: 1em 3em;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  .signUpForm {
+    padding: 2.5em;
+  }
+
+  .signUpForm .field {
+    margin: 0 0 1.3125rem 0;
+  }
+
+  .signUpForm input {
+    padding: 1rem 1.875rem;
+  }
 }
 
 .signUpForm input:active,
@@ -125,10 +172,11 @@
   appearance: none;
   font-family: inherit;
   font-size: 1rem;
-  font-weight: 600;
+  letter-spacing: 0.05em;
   color: white;
   background-color: var(--green);
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
   margin: 0 0 1rem 0;
   width: 100%;
   border: none;
@@ -138,8 +186,11 @@
 }
 
 .signUpForm .terms {
-  font-size: 0.675rem;
+  font-size: 0.625rem; /*10px*/
+  font-weight: 500;
   text-align: center;
+  line-height: 2.1em; /*21px*/
+  letter-spacing: 0.5px;
   color: var(--grayis-blue);
   margin: 0 2em;
 }
@@ -147,6 +198,7 @@
 .signUpForm .terms a {
   font-size: 0.675rem;
   font-weight: 700;
+  letter-spacing: 0;
   text-decoration: none;
   color: var(--red);
 }

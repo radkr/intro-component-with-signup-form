@@ -14,12 +14,12 @@ export default function Home() {
           invaluable.
         </p>
       </div>
-      <div>
+      <div className={styles.signUp}>
         <p className={styles.pricing}>
           <strong>Try it free 7 days</strong> then $20/mo. thereafter
         </p>
         <form aria-label="Sign Up Form" className={styles.signUpForm}>
-          <p className={styles.active}>
+          <p className={styles.field}>
             <label htmlFor="firstName">First Name</label>
             <input
               type="text"
@@ -31,7 +31,7 @@ export default function Home() {
             <Image src={icon} alt="Error Icon" className={styles.errorIcon} />
             <span className={styles.error}>First Name cannot be empty</span>
           </p>
-          <p>
+          <p className={styles.field}>
             <label htmlFor="lastName">First Name</label>
             <input
               type="text"
@@ -42,7 +42,7 @@ export default function Home() {
             <Image src={icon} alt="Error Icon" className={styles.errorIcon} />
             <span className={styles.error}>Last Name cannot be empty</span>
           </p>
-          <p>
+          <p className={styles.field}>
             <label htmlFor="email">First Name</label>
             <input
               type="email"
@@ -53,7 +53,7 @@ export default function Home() {
             <Image src={icon} alt="Error Icon" className={styles.errorIcon} />
             <span className={styles.error}>Look like this is not an email</span>
           </p>
-          <p>
+          <p className={styles.field}>
             <label htmlFor="password">First Name</label>
             <input
               type="password"

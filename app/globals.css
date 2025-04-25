@@ -22,3 +22,13 @@ body {
   background-position: top;
   background-color: var(--red);
 }
+
+@media (min-width: 375) {
+  body {
+    background-image: url(/static/bg-intro-desktop.png);
+    background-size: auto;
+    background-position: top;
+    background-repeat: none;
+    background-color: var(--red);
+  }
+}

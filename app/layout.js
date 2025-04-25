@@ -2,7 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 const poppinsSansSerif = Poppins({
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-poppins-sans-serif",
 });
 
