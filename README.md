@@ -15,6 +15,7 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
     - [Iteration 1](#iteration-1)
     - [Iteration 2](#iteration-2)
     - [Iteration 3](#iteration-3)
+    - [Iteration 4](#iteration-4)
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 
