@@ -13,6 +13,8 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
   - [Tested with](#tested-with)
   - [Iterations](#iterations)
     - [Iteration 1](#iteration-1)
+    - [Iteration 2](#iteration-2)
+    - [Iteration 3](#iteration-3)
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 
@@ -54,6 +56,10 @@ Show the styled page on mobile devices.
 ### Iteration 2
 
 Show the styled page on both desktop and mobile devices.
+
+### Iteration 3
+
+Refactor: Rewrite the style to use grid instead of flexbox to prevent glitches around the breakpoint.
 
 ## What I learned
 

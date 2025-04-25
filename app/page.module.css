@@ -3,11 +3,12 @@
   padding: 3.75rem 1.5rem;
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  justify-items: center;
   align-items: center;
+  justify-content: center;
   row-gap: 2rem;
 }
 
@@ -81,6 +82,15 @@
 }
 
 @media (min-width: calc(1.5rem + 35rem + 35rem + 1.5rem)) {
+  .contentArea {
+    grid-template-columns: 35rem 35rem;
+    grid-template-rows: auto;
+    justify-items: stretch;
+    align-items: center;
+    justify-content: center;
+    row-gap: none;
+  }
+
   .intro {
     text-align: left;
   }
