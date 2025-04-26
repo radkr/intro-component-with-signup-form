@@ -8,7 +8,7 @@ export default function Input({
   name,
   placeholder,
   errorMessage,
-  autofocus,
+  autoFocus,
   active,
 }) {
   return (
@@ -21,11 +21,13 @@ export default function Input({
         id={id}
         name={name}
         placeholder={placeholder}
-        autofocus={autofocus}
+        autoFocus={autoFocus}
         className={styles.fieldInput}
       />
-      <Image src={icon} alt="Error Icon" className={styles.errorIcon} />
-      <span className={styles.error}>{errorMessage}</span>
+      {active && (
+        <Image src={icon} alt="Error Icon" className={styles.errorIcon} />
+      )}
+      {active && <span className={styles.errorMessage}>{errorMessage}</span>}
     </p>
   );
 }

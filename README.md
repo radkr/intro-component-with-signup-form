@@ -17,6 +17,11 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
     - [Iteration 3](#iteration-3)
     - [Iteration 4](#iteration-4)
   - [What I learned](#what-i-learned)
+    - [Next.js fonts](#nextjs-fonts)
+    - [Next.js background](#nextjs-background)
+    - [Iteration 1 - Lesson learned](#iteration-1---lesson-learned)
+    - [Iteration 2 - Lesson learned](#iteration-2---lesson-learned)
+    - [Testing style applied through CSS](#testing-style-applied-through-css)
   - [Useful resources](#useful-resources)
 
 # Overview
@@ -26,7 +31,7 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
 ## Links
 
 - Solution URL: [On Frontend Mentor](#)
-- Live Site URL: [On Github Pages](#)
+- Live Site URL: [On Github Pages](https://radkr.github.io/intro-component-with-signup-form/)
 
 # My process
 
@@ -62,7 +67,7 @@ Show the styled page on both desktop and mobile devices.
 
 Refactor: Rewrite the style to use grid instead of flexbox to prevent glitches around the breakpoint.
 
-## Iteration 4
+### Iteration 4
 
 Refactor: Factor the reused Input component and the functional SignUpForm component out into React Functional Components to enhance the maintainablilty and the testability of the page.
 
@@ -102,6 +107,43 @@ I found the [PerfectPixel Chrome extension](https://chromewebstore.google.com/de
 ### Iteration 2 - Lesson learned
 
 When the element sizes change with the layout, using flexbox can be tricky. Iteration 3 will maybe to refactor the current solution to grid layout to prevent the undesired glitches around the breakpoint.
+
+### Testing style applied through CSS
+
+My intent was to test: that the Input component renders input that change its border color when get in error state with code something like this:
+
+```javascript
+it("renders input that change its border color when get in error state", () => {
+  // Arrange and act
+  //
+  // Not in error state
+  render(<Input id="firstName" placeholder="First Name" />);
+  const inactiveInput = screen.getByLabelText("First Name");
+  const inactiveBorderColor =
+    window.getComputedStyle(inactiveInput).borderColor;
+
+  // In error state
+  render(<Input id="firstName" placeholder="First Name" active />);
+  const activeInput = screen.getByLabelText("First Name");
+  const activeBorderColor = window.getComputedStyle(activeInput).borderColor;
+
+  // Assert
+  expect(activeBorderColor).not.toBe(inactiveInput);
+});
+```
+
+This test failed because both `activeBorderColor` and `inactiveInput` result to be empty strings.
+
+As I found out jest with jsdom does not populates the dom with style properties spcified in the css files. There are packages like `jest-transform-css` that intend to do the work.
+
+Lessons learned:
+
+- The `toHaveStyle` Jest DOM function can check against concrete style properties
+- `jsdom` provides the `document` and `window` objects that implements many browser API for testing
+- By default, Jest doesn't understand how to process CSS files or CSS Modules. It's primarily a JavaScript testing framework.
+- CSS files or CSS modules are mocked in a default next.js environment this allows to verify that the correct class names are being applied to your HTML elements, but the actual CSS style properties defined in those files are not populated in the `jsdom` environment.
+- There is a package `jest-transform-css` that do the work.
+- Performance: Fully parsing and applying CSS in a unit testing environment can be resource-intensive and slow down the test suite. Mocking provides a faster and more focused approach.
 
 ## Useful resources
 

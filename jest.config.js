@@ -99,6 +99,8 @@ const config = {
   moduleNameMapper: {
     // ...
     "^@/(.*)$": "<rootDir>/$1",
+    "^.+\\.module\\.css$": "jest-transform-css",
+    //"^.+\\.css$": require.resolve("./test/style-mock.js"), // Optional: For global CSS
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -184,7 +186,9 @@ const config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  /*transform: {
+    "^.+\\.css$": ["jest-transform-css", { modules: true }],
+  },*/
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

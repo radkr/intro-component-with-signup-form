@@ -57,24 +57,14 @@
   right: 1.5625rem;
   width: 1.5625rem;
   height: 1.5625rem;
-  display: none;
 }
 
-.active .errorIcon {
-  display: block;
-}
-
-.error {
+.errorMessage {
   font-size: 0.675rem;
   font-style: italic;
   color: var(--red);
-  display: none;
   width: 100%;
   text-align: right;
-}
-
-.active .error {
-  display: inline-block;
 }
 
 @media (min-width: calc(1.5rem + 35rem + 35rem + 1.5rem)) {
