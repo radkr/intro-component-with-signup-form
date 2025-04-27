@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
-import Input from "../input";
+import Input from "./input";
 
 describe(Input, () => {
   it("renders input labeled with 'First Name'", () => {
@@ -24,6 +24,28 @@ describe(Input, () => {
     // Assert
     expect(input).toBeInTheDocument();
     expect(placeholder).toBe("First Name");
+  });
+
+  it("renders input labeled with 'Password'", () => {
+    // Arrange
+    render(<Input id="password" placeholder="Password" />);
+    // Act
+    const input = screen.getByLabelText("Password");
+    const id = input.id;
+    // Assert
+    expect(input).toBeInTheDocument();
+    expect(id).toBe("password");
+  });
+
+  it("renders input with placeholder text of 'Password'", () => {
+    // Arrange
+    render(<Input id="password" placeholder="Password" />);
+    // Act
+    const input = screen.getByLabelText("Password");
+    const placeholder = input.placeholder;
+    // Assert
+    expect(input).toBeInTheDocument();
+    expect(placeholder).toBe("Password");
   });
 
   it("renders input not in focus by default", () => {
@@ -90,7 +112,7 @@ describe(Input, () => {
     expect(errorMessage).not.toBeInTheDocument;
   });
 
-  it("renders error message by default", () => {
+  it("renders error message in error state", () => {
     // Arrange and act
     render(
       <Input
