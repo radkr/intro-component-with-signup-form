@@ -7,10 +7,13 @@ import Input from "@/app/_components/input/input";
 import styles from "./sign-up-form.module.css";
 
 const signUpSchema = z.object({
-  firstName: z.string().min(1, { message: "First Name cannot be empty" }),
-  lastName: z.string().min(1, { message: "Last Name cannot be empty" }),
-  email: z.string().email({ message: "Look like this is not an email" }),
-  password: z.string().min(1, { message: "Password cannot be empty" }),
+  firstName: z
+    .string()
+    .trim()
+    .min(1, { message: "First Name cannot be empty" }),
+  lastName: z.string().trim().min(1, { message: "Last Name cannot be empty" }),
+  email: z.string().trim().email({ message: "Look like this is not an email" }),
+  password: z.string().trim().min(1, { message: "Password cannot be empty" }),
 });
 
 export default function SignUpForm() {
