@@ -77,6 +77,10 @@ Refactor: Factor the reused Input component and the functional SignUpForm compon
 
 Show error messages on submittion attempt and prevent submittion when no or invalid data has been entered to any field so as the user be able to fix any error in the form right away.
 
+### Iteration 6
+
+Show error messages on lost input focus when no or invalid data has been entered to any field so as the user is notified even more earlier about any form error.
+
 ## What I learned
 
 ### Next.js fonts

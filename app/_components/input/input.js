@@ -9,6 +9,8 @@ export default function Input({
   placeholder,
   errorMessage,
   autoFocus,
+  onFocus,
+  onBlur,
 }) {
   return (
     <p className={styles.field} data-testid={`${id}Test`}>
@@ -24,6 +26,8 @@ export default function Input({
         className={`${styles.fieldInput} ${
           errorMessage ? styles.fieldInput_Invalid : ""
         }`}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
       {errorMessage && (
         <Image src={icon} alt="Error Icon" className={styles.errorIcon} />

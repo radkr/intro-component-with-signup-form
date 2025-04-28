@@ -43,6 +43,13 @@
   border-color: var(--red);
 }
 
+.fieldInput_Invalid:focus {
+  border: none;
+  border: 1px solid var(--red);
+  outline: none;
+  caret-color: var(--red);
+}
+
 .fieldInput_Invalid:autofill {
   color: var(--red);
 }

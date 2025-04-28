@@ -30,9 +30,24 @@ export default function SignUpForm() {
     return isValid;
   }
 
+  function handleFocus(event) {
+    const name = event.target.name;
+    setIsValid((lastValue) => ({ ...lastValue, [name]: undefined }));
+  }
+
+  function handleBlur(event) {
+    console.log("value: ", event.target.value);
+    console.log("name: ", event.target.name);
+    const name = event.target.name;
+    const data = { [name]: event.target.value };
+    const isValid = { [name]: getIsValid(data)[name] };
+    console.log("isValid: ", isValid);
+    setIsValid((lastValue) => ({ ...lastValue, ...isValid }));
+  }
+
   function handleSubmit(event) {
-    const formData = Object.fromEntries(new FormData(event.target).entries());
-    const isValid = getIsValid(formData);
+    const data = Object.fromEntries(new FormData(event.target).entries());
+    const isValid = getIsValid(data);
     setIsValid(isValid);
     if (Object.keys(isValid).length > 0) {
       event.preventDefault();
@@ -52,6 +67,8 @@ export default function SignUpForm() {
         name="firstName"
         placeholder="First Name"
         errorMessage={isValid.firstName}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         autoFocus
       />
       <Input
@@ -60,6 +77,8 @@ export default function SignUpForm() {
         name="lastName"
         placeholder="Last Name"
         errorMessage={isValid.lastName}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
       <Input
         type="email"
@@ -67,6 +86,8 @@ export default function SignUpForm() {
         name="email"
         placeholder="Email Address"
         errorMessage={isValid.email}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
       <Input
         type="password"
@@ -74,6 +95,8 @@ export default function SignUpForm() {
         name="password"
         placeholder="Password"
         errorMessage={isValid.password}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
       <button>CLAIM YOUR FREE TRIAL</button>
       <p className={styles.terms}>

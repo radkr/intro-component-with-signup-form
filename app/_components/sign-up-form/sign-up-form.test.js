@@ -4,21 +4,45 @@ import userEvent from "@testing-library/user-event";
 
 import SignUpForm from "./sign-up-form";
 
-function rendersInput(placeholder) {
+const firstName = {
+  id: "firstName",
+  placeholder: "First Name",
+  message: "First Name cannot be empty",
+};
+
+const lastName = {
+  id: "lastName",
+  placeholder: "Last Name",
+  message: "Last Name cannot be empty",
+};
+
+const email = {
+  id: "email",
+  placeholder: "Email Address",
+  message: "Look like this is not an email",
+};
+
+const password = {
+  id: "password",
+  placeholder: "Password",
+  message: "Password cannot be empty",
+};
+
+function rendersInput(input) {
   // Arrange
   render(<SignUpForm />);
   // Act
-  const signUpForm = screen.getByPlaceholderText(placeholder);
+  const signUpForm = screen.getByPlaceholderText(input.placeholder);
   // Assert
   expect(signUpForm).toBeInTheDocument();
 }
 
-function rendersValidInput(id, message) {
+function rendersValidInput(input) {
   // Arrange
   render(<SignUpForm />);
   // Act
-  const field = screen.getByTestId(`${id}Test`);
-  const errorMessage = screen.queryByText(message, {
+  const field = screen.getByTestId(`${input.id}Test`);
+  const errorMessage = screen.queryByText(input.message, {
     container: field,
   });
   // Assert
@@ -27,35 +51,35 @@ function rendersValidInput(id, message) {
 
 describe(SignUpForm, () => {
   it("renders First Name input", () => {
-    rendersInput("First Name");
+    rendersInput(firstName);
   });
 
   it("renders no error message for First Name input on load", () => {
-    rendersValidInput("firstName", "First Name cannot be empty");
+    rendersValidInput(firstName);
   });
 
   it("renders Last Name input", () => {
-    rendersInput("Last Name");
+    rendersInput(lastName);
   });
 
   it("renders no error message for Last Name input on load", () => {
-    rendersValidInput("lastName", "Last Name cannot be empty");
+    rendersValidInput(lastName);
   });
 
   it("renders Email Address input", () => {
-    rendersInput("Email Address");
+    rendersInput(email);
   });
 
   it("renders no error message for Email Address input on load", () => {
-    rendersValidInput("email", "Look like this is not an email");
+    rendersValidInput(email);
   });
 
   it("renders Password input", () => {
-    rendersInput("Password");
+    rendersInput(password);
   });
 
   it("renders no error message for Password input on load", () => {
-    rendersValidInput("password", "Password cannot be empty");
+    rendersValidInput(password);
   });
 
   it("renders the 'Claim your free trail' button", () => {
@@ -84,7 +108,7 @@ describe(SignUpForm, () => {
     // Arrange
     render(<SignUpForm />);
     // Act
-    const signUpForm = screen.getByPlaceholderText("First Name");
+    const signUpForm = screen.getByPlaceholderText(firstName.placeholder);
     // Assert
     expect(signUpForm).toHaveFocus();
   });
@@ -95,47 +119,47 @@ async function submit() {
   await userEvent.click(button);
 }
 
-async function submitNoData(id, message) {
+async function submitNoData(input) {
   // Arrange
   render(<SignUpForm />);
   // Act
   await submit();
-  const field = screen.getByTestId(`${id}Test`);
-  const errorMessage = screen.getByText(message, {
+  const field = screen.getByTestId(`${input.id}Test`);
+  const errorMessage = screen.getByText(input.message, {
     container: field,
   });
   // Assert
   expect(errorMessage).toBeInTheDocument();
 }
 
-async function submitInvalidData(id, message, placeholder, data) {
+async function submitInvalidData(input, data) {
   // Arrange
   render(<SignUpForm />);
   // Act
-  const field = screen.getByTestId(`${id}Test`);
-  const input = screen.getByPlaceholderText(placeholder, {
+  const field = screen.getByTestId(`${input.id}Test`);
+  const inputField = screen.getByPlaceholderText(input.placeholder, {
     container: field,
   });
-  await userEvent.type(input, data);
+  await userEvent.type(inputField, data);
   await submit();
-  const errorMessage = screen.getByText(message, {
+  const errorMessage = screen.getByText(input.message, {
     container: field,
   });
   // Assert
   expect(errorMessage).toBeInTheDocument();
 }
 
-async function submitValidData(id, message, placeholder, data) {
+async function submitValidData(input, data) {
   // Arrange
   render(<SignUpForm />);
   // Act
-  const field = screen.getByTestId(`${id}Test`);
-  const input = screen.getByPlaceholderText(placeholder, {
+  const field = screen.getByTestId(`${input.id}Test`);
+  const inputField = screen.getByPlaceholderText(input.placeholder, {
     container: field,
   });
-  await userEvent.type(input, data);
+  await userEvent.type(inputField, data);
   await submit();
-  const errorMessage = screen.queryByText(message, {
+  const errorMessage = screen.queryByText(input.message, {
     container: field,
   });
   // Assert
@@ -144,63 +168,128 @@ async function submitValidData(id, message, placeholder, data) {
 
 describe("SignUpForm submittion tests", () => {
   it("show error message upon signing up without filling First Name", async () => {
-    await submitNoData("firstName", "First Name cannot be empty");
+    await submitNoData(firstName);
   });
 
   it("do not show error message upon signing up when First Name has been filled", async () => {
-    await submitValidData(
-      "firstName",
-      "First Name cannot be empty",
-      "First Name",
-      "a"
-    );
+    await submitValidData(firstName, "a");
   });
 
   it("show error message upon signing up without filling Last Name", async () => {
-    await submitNoData("lastName", "Last Name cannot be empty");
+    await submitNoData(lastName);
   });
 
   it("do not show error message upon signing up when Last Name has been filled", async () => {
-    await submitValidData(
-      "lastName",
-      "Last Name cannot be empty",
-      "Last Name",
-      "a"
-    );
+    await submitValidData(lastName, "a");
   });
 
   it("show error message upon signing up without filling Email Address", async () => {
-    await submitNoData("email", "Look like this is not an email");
+    await submitNoData(email);
+  });
+
+  it("show error message upon signing up when invalid Email Address has been filled", async () => {
+    await submitInvalidData(email, "a");
   });
 
   it("do not show error message upon signing up when Email Address has been filled", async () => {
-    await submitInvalidData(
-      "email",
-      "Look like this is not an email",
-      "Email Address",
-      "a"
-    );
-  });
-
-  it("do not show error message upon signing up when Email Address has been filled", async () => {
-    await submitValidData(
-      "email",
-      "Look like this is not an email",
-      "Email Address",
-      "a@a.ab"
-    );
+    await submitValidData(email, "a@a.ab");
   });
 
   it("show error message upon signing up without filling Password", async () => {
-    await submitNoData("password", "Password cannot be empty");
+    await submitNoData(password);
   });
 
   it("do not show error message upon signing up when Password has been filled", async () => {
-    await submitValidData(
-      "password",
-      "Password cannot be empty",
-      "Password",
-      "a"
-    );
+    await submitValidData(password, "a");
+  });
+});
+
+async function enter(input, data) {
+  const field = screen.getByTestId(`${input.id}Test`);
+  const inputField = screen.getByPlaceholderText(input.placeholder, {
+    container: field,
+  });
+  await userEvent.click(inputField);
+  if (data) {
+    await userEvent.type(inputField, data);
+  }
+  const form = screen.getByLabelText("Sign Up Form");
+  await userEvent.click(form);
+}
+
+async function enterNoData(input) {
+  // Arrange
+  render(<SignUpForm />);
+  // Act
+  await enter(input);
+  const field = screen.getByTestId(`${input.id}Test`);
+  const errorMessage = screen.getByText(input.message, {
+    container: field,
+  });
+  // Assert
+  expect(errorMessage).toBeInTheDocument();
+}
+
+async function enterInvalidData(input, data) {
+  // Arrange
+  render(<SignUpForm />);
+  // Act
+  await enter(input, data);
+  const field = screen.getByTestId(`${input.id}Test`);
+  const errorMessage = screen.getByText(input.message, {
+    container: field,
+  });
+  // Assert
+  expect(errorMessage).toBeInTheDocument();
+}
+
+async function enterValidData(input, data) {
+  // Arrange
+  render(<SignUpForm />);
+  // Act
+  await enter(input, data);
+  const field = screen.getByTestId(`${input.id}Test`);
+  const errorMessage = screen.queryByText(input.message, {
+    container: field,
+  });
+  // Assert
+  expect(errorMessage).not.toBeInTheDocument();
+}
+
+describe("SignUpForm lost focus tests", () => {
+  it("show error message upon entering no data to First Name", async () => {
+    await enterNoData(firstName);
+  });
+
+  it("do not show error message upon entering valid data to First Name", async () => {
+    await enterValidData(firstName, "a");
+  });
+
+  it("show error message upon entering no data to Last Name", async () => {
+    await enterNoData(lastName);
+  });
+
+  it("do not show error message upon entering valid data to Last Name", async () => {
+    await enterValidData(lastName, "a");
+  });
+
+  it("show error message upon entering no data to Email Address", async () => {
+    await enterNoData(email);
+  });
+
+  it("show error message upon entering invalid Email Address", async () => {
+    await enterInvalidData(email, "a");
+  });
+
+  it("do not show error message upon entering valid data to Email Address", async () => {
+    await enterValidData(email, "a@a.ab");
+  });
+
+  it("show error message upon entering no data to Password", async () => {
+    await enterNoData(password);
+  });
+
+  it("do not show error message upon entering valid data to Password", async () => {
+    await enterValidData(password, "a");
   });
 });
