@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./input.module.css";
-import icon from "@/static/icon-error.svg";
+import icon from "@/public/icon-error.svg";
 
 export default function Input({
   type,
