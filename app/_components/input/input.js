@@ -14,12 +14,8 @@ export default function Input({
 }) {
   return (
     <p className={styles.field} data-testid={`${id}Test`}>
-      <label htmlFor={id} className={styles.fieldLabel}>
-        {placeholder}
-      </label>
       <input
         type={type}
-        id={id}
         name={name}
         placeholder={placeholder}
         autoFocus={autoFocus}
@@ -28,6 +24,7 @@ export default function Input({
         }`}
         onFocus={onFocus}
         onBlur={onBlur}
+        aria-label={placeholder}
       />
       {errorMessage && (
         <Image src={icon} alt="Error Icon" className={styles.errorIcon} />

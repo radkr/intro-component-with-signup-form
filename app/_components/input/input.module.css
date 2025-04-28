@@ -10,10 +10,6 @@
   position: relative;
 }
 
-.fieldLabel {
-  display: none;
-}
-
 .fieldInput {
   -webkit-appearance: none;
   -moz-appearance: none;
