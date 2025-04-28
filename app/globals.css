@@ -29,12 +29,11 @@ body {
   background-color: var(--red);
 }
 
-@media (min-width: 400) {
+@media (min-width: 400px) {
   body {
     background-image: url(/intro-component-with-signup-form/bg-intro-desktop.png);
     background-size: auto;
     background-position: top;
-    background-repeat: none;
     background-color: var(--red);
   }
 }
