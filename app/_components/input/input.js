@@ -9,10 +9,9 @@ export default function Input({
   placeholder,
   errorMessage,
   autoFocus,
-  active,
 }) {
   return (
-    <p className={`${styles.field} ${active ? styles.active : ""}`}>
+    <p className={styles.field} data-testid={`${id}Test`}>
       <label htmlFor={id} className={styles.fieldLabel}>
         {placeholder}
       </label>
@@ -22,12 +21,16 @@ export default function Input({
         name={name}
         placeholder={placeholder}
         autoFocus={autoFocus}
-        className={styles.fieldInput}
+        className={`${styles.fieldInput} ${
+          errorMessage ? styles.fieldInput_Invalid : ""
+        }`}
       />
-      {active && (
+      {errorMessage && (
         <Image src={icon} alt="Error Icon" className={styles.errorIcon} />
       )}
-      {active && <span className={styles.errorMessage}>{errorMessage}</span>}
+      {errorMessage && (
+        <span className={styles.errorMessage}>{errorMessage}</span>
+      )}
     </p>
   );
 }

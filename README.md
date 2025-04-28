@@ -16,12 +16,14 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
     - [Iteration 2](#iteration-2)
     - [Iteration 3](#iteration-3)
     - [Iteration 4](#iteration-4)
+    - [Iteration 5](#iteration-5)
   - [What I learned](#what-i-learned)
     - [Next.js fonts](#nextjs-fonts)
     - [Next.js background](#nextjs-background)
     - [Iteration 1 - Lesson learned](#iteration-1---lesson-learned)
     - [Iteration 2 - Lesson learned](#iteration-2---lesson-learned)
     - [Testing style applied through CSS](#testing-style-applied-through-css)
+    - [Form no validation](#form-no-validation)
   - [Useful resources](#useful-resources)
 
 # Overview
@@ -42,15 +44,15 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
 - Mobile-first workflow
 - Responsive design
 - Next.js + React.js
+- Zod schema validation package
 
 ## Improved with
 
-- Autoprefixer to increase browser coverage
+- TODO: Autoprefixer to increase browser coverage
 
 ## Tested with
 
-- W3C Markup validation service
-- WAVE Web Accessibility Evaluation Tool
+- TODO: WAVE Web Accessibility Evaluation Tool
 - Jest + React Testing Library + User Event Testing Library
 
 ## Iterations
@@ -70,6 +72,10 @@ Refactor: Rewrite the style to use grid instead of flexbox to prevent glitches a
 ### Iteration 4
 
 Refactor: Factor the reused Input component and the functional SignUpForm component out into React Functional Components to enhance the maintainablilty and the testability of the page.
+
+### Iteration 5
+
+Show error messages on submittion attempt and prevent submittion when no or invalid data has been entered to any field so as the user be able to fix any error in the form right away.
 
 ## What I learned
 
@@ -144,6 +150,10 @@ Lessons learned:
 - CSS files or CSS modules are mocked in a default next.js environment this allows to verify that the correct class names are being applied to your HTML elements, but the actual CSS style properties defined in those files are not populated in the `jsdom` environment.
 - There is a package `jest-transform-css` that do the work.
 - Performance: Fully parsing and applying CSS in a unit testing environment can be resource-intensive and slow down the test suite. Mocking provides a faster and more focused approach.
+
+### Form no validation
+
+Zod works properly only if `noValidate` is set on the `form` element. Otherwise, the `form` element catches email format error before passed to Zod. This prevented showing the error message specified.
 
 ## Useful resources
 
