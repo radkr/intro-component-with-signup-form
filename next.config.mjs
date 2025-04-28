@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/docs",
+  basePath: "/intro-component-with-signup-form",
 };
 
 export default nextConfig;
