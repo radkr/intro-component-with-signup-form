@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: >0.3%,last 5 version,not dead
+*/
+
 .field {
   margin: 0 0 1rem 0;
   position: relative;
@@ -8,6 +15,8 @@
 }
 
 .fieldInput {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   font-family: inherit;
   font-size: 0.875rem;
@@ -50,8 +59,20 @@
   caret-color: var(--red);
 }
 
+.fieldInput_Invalid:-webkit-autofill {
+  color: var(--red);
+}
+
 .fieldInput_Invalid:autofill {
   color: var(--red);
+}
+
+.fieldInput_Invalid::-webkit-input-placeholder {
+  visibility: hidden;
+}
+
+.fieldInput_Invalid::-moz-placeholder {
+  visibility: hidden;
 }
 
 .fieldInput_Invalid::placeholder {
