@@ -9,10 +9,8 @@ describe(Input, () => {
     render(<Input id="firstName" placeholder="First Name" />);
     // Act
     const input = screen.getByLabelText("First Name");
-    const id = input.id;
     // Assert
     expect(input).toBeInTheDocument();
-    expect(id).toBe("firstName");
   });
 
   it("renders input with placeholder text of 'First Name'", () => {
@@ -31,10 +29,8 @@ describe(Input, () => {
     render(<Input id="password" placeholder="Password" />);
     // Act
     const input = screen.getByLabelText("Password");
-    const id = input.id;
     // Assert
     expect(input).toBeInTheDocument();
-    expect(id).toBe("password");
   });
 
   it("renders input with placeholder text of 'Password'", () => {

@@ -39,12 +39,9 @@ export default function SignUpForm() {
   }
 
   function handleBlur(event) {
-    console.log("value: ", event.target.value);
-    console.log("name: ", event.target.name);
     const name = event.target.name;
     const data = { [name]: event.target.value };
     const isValid = { [name]: getIsValid(data)[name] };
-    console.log("isValid: ", isValid);
     setIsValid((lastValue) => ({ ...lastValue, ...isValid }));
   }
 

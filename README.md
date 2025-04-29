@@ -1,6 +1,6 @@
 # Frontend Mentor - QR code component solution
 
-This is a solution to the [QR code component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/intro-component-with-signup-form-5cf91bd49edda32581d28fd1). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Intro component with sign-up form](https://www.frontendmentor.io/challenges/intro-component-with-signup-form-5cf91bd49edda32581d28fd1). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 With my solution I went a bit further and created a
 
@@ -146,22 +146,60 @@ export default MyImage(){
 ```
 
 - **Asset Loading**:
-  - ✔ - **For local `import`ed images in `.js`**: _"When using the next/image component, you will need to add the basePath in front of src."_
+  - ✔ - **For local `import`ed images in `.js`**
   - ✗ - **For images referenced by `url()` in `.css`**
 
-I have not found any other solution then applying the subpath manually on `url()`s manually.
+To prevent replacing the subpath manually on css `url()`s I inject css variables inline in the `layout.js` and apply them in the `globals.css` as follows:
+
+```javascript
+//app/layout.js
+
+import backgroundMobile from "../public/bg-intro-mobile.png";
+import backgroundDesktop from "../public/bg-intro-desktop.png";
+
+//...
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body
+        style={{
+          "--background-mobile": `url(${backgroundMobile.src})`,
+          "--background-desktop": `url(${backgroundDesktop.src})`,
+        }}
+        className={`${poppinsSansSerif.variable}`}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
+```
 
 ```css
+/*app/globals.css*/
+
+/*...*/
+
 body {
-  background-image: url(/intro-component-with-signup-form/bg-intro-mobile.png);
+  background-image: var(--background-mobile);
+  /*...*/
 }
+
+@media (min-width: 400px) {
+  body {
+    background-image: var(--background-desktop);
+    /*...*/
+  }
 ```
 
 - **Asset Loading**:
   - ✔ - **For local `import`ed images in `.js`**: _"When using the next/image component, you will need to add the basePath in front of src."_
   - ✔ - **For images referenced by `url()` in `.css`**
 
-> **Note:** [assetPrefix](https://nextjs.org/docs/app/api-reference/config/next-config-js/assetPrefix) controls the prefix of the static assets like `.css` and `.js` files only while it does not control those like the files (e.g. images, icons and so on) in the `public` folder.
+> **Note:** [assetPrefix](https://nextjs.org/docs/app/api-reference/config/next-config-js/assetPrefix) replaces the basePath if any with the asset prefix of the static assets like `.css` and `.js` files only while it does not replace those like the files (e.g. images, icons and so on) in the `public` folder. So setting `assetPrefix` is not necessary in this case.
+
+> **Note:** The Next.js Github Action automatically replaces the next config with `output: export` and `basePath: "/<repository_name>"` set. That is the reason why deploying on Github Pages work well without config modification decently except for the css `url()` reference for the background images.
 
 ### Iteration 1 - Lesson learned
 

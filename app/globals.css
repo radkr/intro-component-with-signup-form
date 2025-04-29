@@ -23,7 +23,7 @@
 
 body {
   font-family: var(--font-poppins-sans-serif);
-  background-image: url(/intro-component-with-signup-form/bg-intro-mobile.png);
+  background-image: var(--background-mobile);
   background-size: cover;
   background-position: top left;
   background-color: var(--red);
@@ -31,7 +31,7 @@ body {
 
 @media (min-width: 400px) {
   body {
-    background-image: url(/intro-component-with-signup-form/bg-intro-desktop.png);
+    background-image: var(--background-desktop);
     background-size: auto;
     background-position: top;
     background-color: var(--red);
