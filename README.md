@@ -1,6 +1,19 @@
 # Frontend Mentor - QR code component solution
 
-This is a solution to the [QR code component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [QR code component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/intro-component-with-signup-form-5cf91bd49edda32581d28fd1). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+
+With my solution I went a bit further and created a
+
+- Next.js site deployed on github pages that is
+- dinamically adjusts to the browser's default font size and is
+- reponsive but still
+- stick to the Frontend Mentor's design when the default font size is 16px.
+
+Altough the client side input validation in this project is so basic that could be solved more simple packages like `validator.js`
+
+- I used Zod package to gain experience using a more sofisticated validator library for future more complex projects written in typescript.
+
+The unit, integration and accessibility tests increase the confidence that the site works as intended.
 
 # Table of contents
 
@@ -19,7 +32,7 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
     - [Iteration 5](#iteration-5)
   - [What I learned](#what-i-learned)
     - [Next.js fonts](#nextjs-fonts)
-    - [Next.js background](#nextjs-background)
+    - [Next.js static assets on Github Pages](#nextjs-static-assets-on-github-pages)
     - [Iteration 1 - Lesson learned](#iteration-1---lesson-learned)
     - [Iteration 2 - Lesson learned](#iteration-2---lesson-learned)
     - [Testing style applied through CSS](#testing-style-applied-through-css)
@@ -48,11 +61,11 @@ This is a solution to the [QR code component challenge on Frontend Mentor](https
 
 ## Improved with
 
-- TODO: Autoprefixer to increase browser coverage
+- Autoprefixer to increase browser coverage
 
 ## Tested with
 
-- TODO: WAVE Web Accessibility Evaluation Tool
+- WAVE Web Accessibility Evaluation Tool
 - Jest + React Testing Library + User Event Testing Library
 
 ## Iterations
@@ -96,17 +109,59 @@ const poppinsSansSerif = Poppins({
 });
 ```
 
-### Next.js background
+### Next.js static assets on Github Pages
 
-Place the background image into the static folder instead of the public folder, that is not cached then use css:
+_"Next.js can serve static files, like images, under a folder called public in the root directory. Files inside public can then be referenced by your code starting from the base URL (/)."_ ([Next.js about public folder](https://nextjs.org/docs/app/api-reference/file-conventions/public-folder))
 
-```css
-.background {
-  background-image: url(/static/bg-intro-mobile.png);
-  background-size: cover;
-  background-position: center;
+Next.js assumes the application will be served from the root of a domain (e.g. `mydomain.com/`) and its routing and asset handling are configured accordingly. Github Pages, however will host them from a subpath in the format `<account_name>.github.io/<repository_name>/`. Practically this leads to the following issues:
+
+- ✗ - **Routing**: Internal links within your Next.js app will likely not work correctly as they will be looking for paths relative to the root of the domain, not the subdirectory.
+- ✗ - **Asset Loading**: Images, CSS, and other static assets might fail to load because their paths will also be incorrect.
+
+_"To deploy a Next.js application under a sub-path of a domain you can use the basePath config option."_ ([Next.js about basePath](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath))
+
+```javascript
+//next.config.mjs
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  basePath: "/<repository_name>",
+};
+
+export default nextConfig;
+```
+
+- ✔ - **Routing**: _"When linking to other pages using `next/link` and `next/router` the `basePath` will be automatically applied."_
+- ✗ - **Asset Loading**: _"When using the next/image component, you will need to add the basePath in front of src."_
+
+[Next.js recommendation](https://nextjs.org/docs/app/building-your-application/optimizing/images#local-images) is: _"To use a local image, import your .jpg, .png, or .webp image files."_ So importing image like below and applying `basePath` will handle the image src to link under the subpath.
+
+```javascript
+import Image from "next/image";
+import icon from "@/public/icon-error.svg";
+
+export default MyImage(){
+  return <Image src={icon} alt="Error Icon" className={styles.errorIcon} />;
 }
 ```
+
+- **Asset Loading**:
+  - ✔ - **For local `import`ed images in `.js`**: _"When using the next/image component, you will need to add the basePath in front of src."_
+  - ✗ - **For images referenced by `url()` in `.css`**
+
+I have not found any other solution then applying the subpath manually on `url()`s manually.
+
+```css
+body {
+  background-image: url(/intro-component-with-signup-form/bg-intro-mobile.png);
+}
+```
+
+- **Asset Loading**:
+  - ✔ - **For local `import`ed images in `.js`**: _"When using the next/image component, you will need to add the basePath in front of src."_
+  - ✔ - **For images referenced by `url()` in `.css`**
+
+> **Note:** [assetPrefix](https://nextjs.org/docs/app/api-reference/config/next-config-js/assetPrefix) controls the prefix of the static assets like `.css` and `.js` files only while it does not control those like the files (e.g. images, icons and so on) in the `public` folder.
 
 ### Iteration 1 - Lesson learned
 
@@ -164,6 +219,13 @@ Zod works properly only if `noValidate` is set on the `form` element. Otherwise,
 **Next.js background images:**
 
 - [How to Add a Background Image in Next.js: A Comprehensive Guide](https://www.dhiwise.com/post/how-to-add-a-background-image-in-nextjs-a-comprehensive-guide)
+
+**Host Next.js project from Github pages**
+
+- [Next.js and GitHub Pages, how the basePath and assetPrefix configuration options will fix your website](https://dev.to/jameswallis/next-js-basepath-and-why-its-awesome-for-github-pages-and-static-sites-41ba)
+- [Steps to deploy your Next.js app on GitHub pages](https://medium.com/@pranavchoudhary500/steps-to-deploy-your-next-js-app-on-github-pages-fcdb60293bbe)
+- [Using GitHub Pages to Build, Deploy, and Host Next.js](https://olets.dev/posts/using-github-pages-to-build-deploy-and-host-nextjs/)
+- [Deploying to GitHub Pages using gh-pages](https://blog.seancoughlin.me/deploying-to-github-pages-using-gh-pages)
 
 **Styling form and form controls**
 
