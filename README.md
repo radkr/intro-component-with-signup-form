@@ -43,6 +43,18 @@ The unit, integration and accessibility tests increase the confidence that the s
 
 ## Screenshot
 
+**Desktop view:**
+
+![Desktop view](./screenshots/desktop.png)
+
+**Desktop view with errors:**
+
+![Desktop view with errors](./screenshots/desktop_active.png)
+
+**Mobile view:**
+
+![Mobile view](./screenshots/mobile.png)
+
 ## Links
 
 - Solution URL: [On Frontend Mentor](https://www.frontendmentor.io/solutions/responsive-sign-up-form-with-css-grid-and-zod-validation-PQt5Ahslgr)
