@@ -45,7 +45,7 @@ The unit, integration and accessibility tests increase the confidence that the s
 
 ## Links
 
-- Solution URL: [On Frontend Mentor](#)
+- Solution URL: [On Frontend Mentor](https://www.frontendmentor.io/solutions/responsive-sign-up-form-with-css-grid-and-zod-validation-PQt5Ahslgr)
 - Live Site URL: [On Github Pages](https://radkr.github.io/intro-component-with-signup-form/)
 
 # My process
